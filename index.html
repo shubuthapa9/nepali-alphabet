@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ne">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Learn the Nepali Alphabet</title>
+
+
+    <style>
+
+        /* ==============================
+           GENERAL PAGE
+        ============================== */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f6f8;
+            margin: 0;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+
+        /* ==============================
+           SECTIONS
+        ============================== */
+
+        .section {
+            background-color: white;
+            max-width: 1000px;
+            margin: 0 auto 40px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-size: 28px;
+            margin-top: 0;
+        }
+
+
+        /* ==============================
+           LETTER GRID
+        ============================== */
+
+        .letter-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(120px, 1fr));
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+
+        /* ==============================
+           LETTER CARD
+        ============================== */
+
+        .letter-card {
+            background-color: #f1f3f5;
+
+            border-radius: 12px;
+
+            padding: 15px;
+
+            transition: 0.2s;
+        }
+
+        .letter-card:hover {
+            background-color: #e7f5ff;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* Nepali letter */
+
+        .letter {
+            font-size: 48px;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* ==============================
+           AUDIO BUTTON
+        ============================== */
+
+        .sound-button {
+            border: none;
+
+            background-color: #1971c2;
+
+            color: white;
+
+            width: 45px;
+
+            height: 45px;
+
+            border-radius: 50%;
+
+            font-size: 20px;
+
+            cursor: pointer;
+        }
+
+        .sound-button:hover {
+            background-color: #145da0;
+        }
+
+        .sound-button:active {
+            transform: scale(0.95);
+        }
+
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .letter {
+                font-size: 40px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==============================
+         TITLE
+    ============================== -->
+
+    <h1>नेपाली वर्णमाला</h1>
+
+    <p class="subtitle">
+        Click the speaker to hear each letter.
+    </p>
+
+
+
+    <!-- ==============================
+         CONSONANTS
+    ============================== -->
+
+    <div class="section">
+
+        <h2>व्यञ्जन</h2>
+
+        <div
+            id="consonantGrid"
+            class="letter-grid">
+        </div>
+
+    </div>
+
+
+
+    <!-- ==============================
+         VOWELS
+    ============================== -->
+
+    <div class="section">
+
+        <h2>स्वर</h2>
+
+        <div
+            id="vowelGrid"
+            class="letter-grid">
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+
+        /* ==================================================
+           CONSONANTS
+
+           Each consonant has:
+
+           letter = letter displayed on screen
+
+           audio = corresponding .m4a recording
+
+           Example:
+
+           क → audio/ka.m4a
+        ================================================== */
+
+        const consonants = [
+
+            {
+                letter: "क",
+                audio: "ka.m4a"
+            },
+
+            {
+                letter: "ख",
+                audio: "kha.m4a"
+            },
+
+            {
+                letter: "ग",
+                audio: "ga.m4a"
+            },
+
+            {
+                letter: "घ",
+                audio: "gha.m4a"
+            },
+
+            {
+                letter: "ङ",
+                audio: "nga.m4a"
+            },
+
+
+            {
+                letter: "च",
+                audio: "cha.m4a"
+            },
+
+            {
+                letter: "छ",
+                audio: "chha.m4a"
+            },
+
+            {
+                letter: "ज",
+                audio: "ja.m4a"
+            },
+
+            {
+                letter: "झ",
+                audio: "jha.m4a"
+            },
+
+            {
+                letter: "ञ",
+                audio: "nya.m4a"
+            },
+
+
+            {
+                letter: "ट",
+                audio: "ta-retroflex.m4a"
+            },
+
+            {
+                letter: "ठ",
+                audio: "tha-retroflex.m4a"
+            },
+
+            {
+                letter: "ड",
+                audio: "da-retroflex.m4a"
+            },
+
+            {
+                letter: "ढ",
+                audio: "dha-retroflex.m4a"
+            },
+
+            {
+                letter: "ण",
+                audio: "na-retroflex.m4a"
+            },
+
+
+            {
+                letter: "त",
+                audio: "ta.m4a"
+            },
+
+            {
+                letter: "थ",
+                audio: "tha.m4a"
+            },
+
+            {
+                letter: "द",
+                audio: "da.m4a"
+            },
+
+            {
+                letter: "ध",
+                audio: "dha.m4a"
+            },
+
+            {
+                letter: "न",
+                audio: "na.m4a"
+            },
+
+
+            {
+                letter: "प",
+                audio: "pa.m4a"
+            },
+
+            {
+                letter: "फ",
+                audio: "pha.m4a"
+            },
+
+            {
+                letter: "ब",
+                audio: "ba.m4a"
+            },
+
+            {
+                letter: "भ",
+                audio: "bha.m4a"
+            },
+
+            {
+                letter: "म",
+                audio: "ma.m4a"
+            },
+
+
+            {
+                letter: "य",
+                audio: "ya.m4a"
+            },
+
+            {
+                letter: "र",
+                audio: "ra.m4a"
+            },
+
+            {
+                letter: "ल",
+                audio: "la.m4a"
+            },
+
+            {
+                letter: "व",
+                audio: "wa.m4a"
+            },
+
+
+            {
+                letter: "श",
+                audio: "sha.m4a"
+            },
+
+            {
+                letter: "ष",
+                audio: "ssa.m4a"
+            },
+
+            {
+                letter: "स",
+                audio: "sa.m4a"
+            },
+
+            {
+                letter: "ह",
+                audio: "ha.m4a"
+            },
+
+
+            {
+                letter: "क्ष",
+                audio: "ksha.m4a"
+            },
+
+            {
+                letter: "त्र",
+                audio: "tra.m4a"
+            },
+
+            {
+                letter: "ज्ञ",
+                audio: "gya.m4a"
+            }
+
+        ];
+
+
+
+        /* ==================================================
+           VOWELS
+
+           Each vowel has:
+
+           letter = letter displayed on screen
+
+           audio = corresponding .m4a recording
+        ================================================== */
+
+        const vowels = [
+
+            {
+                letter: "अ",
+                audio: "a.m4a"
+            },
+
+            {
+                letter: "आ",
+                audio: "aa.m4a"
+            },
+
+            {
+                letter: "इ",
+                audio: "i.m4a"
+            },
+
+            {
+                letter: "ई",
+                audio: "ee.m4a"
+            },
+
+            {
+                letter: "उ",
+                audio: "u.m4a"
+            },
+
+            {
+                letter: "ऊ",
+                audio: "oo.m4a"
+            },
+
+            {
+                letter: "ऋ",
+                audio: "ri.m4a"
+            },
+
+            {
+                letter: "ए",
+                audio: "e.m4a"
+            },
+
+            {
+                letter: "ऐ",
+                audio: "ai.m4a"
+            },
+
+            {
+                letter: "ओ",
+                audio: "o.m4a"
+            },
+
+            {
+                letter: "औ",
+                audio: "au.m4a"
+            },
+
+            {
+                letter: "अं",
+                audio: "am.m4a"
+            },
+
+            {
+                letter: "अः",
+                audio: "aha.m4a"
+            }
+
+        ];
+
+
+
+        /* ==================================================
+           CREATE A LETTER CARD
+        ================================================== */
+
+        function createLetterCard(letterData) {
+
+
+            /*
+                Create the card.
+            */
+
+            const card =
+                document.createElement("div");
+
+            card.className = "letter-card";
+
+
+            /*
+                Create the Nepali letter.
+            */
+
+            const letter =
+                document.createElement("div");
+
+            letter.className = "letter";
+
+            letter.textContent =
+                letterData.letter;
+
+
+            /*
+                Create the audio button.
+            */
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "sound-button";
+
+            button.textContent = "🔊";
+
+            button.title =
+                "Play pronunciation";
+
+
+            /*
+                Play the appropriate recording
+                when the button is clicked.
+            */
+
+            button.onclick = function() {
+
+                playAudio(
+                    letterData.audio
+                );
+
+            };
+
+
+            /*
+                Put the letter and button
+                into the card.
+            */
+
+            card.appendChild(letter);
+
+            card.appendChild(button);
+
+
+            return card;
+
+        }
+
+
+
+        /* ==================================================
+           PLAY AUDIO
+        ================================================== */
+
+        function playAudio(filename) {
+
+
+            /*
+                The "audio/" portion tells the
+                browser to look inside the audio
+                folder.
+
+                For example:
+
+                filename = "ka.m4a"
+
+                becomes:
+
+                audio/ka.m4a
+            */
+
+            const audio =
+                new Audio("audio/" + filename);
+
+
+            /*
+                Play the recording.
+            */
+
+            audio.play();
+
+
+        }
+
+
+
+        /* ==================================================
+           DISPLAY CONSONANTS
+        ================================================== */
+
+        const consonantGrid =
+            document.getElementById(
+                "consonantGrid"
+            );
+
+
+        consonants.forEach(function(consonant) {
+
+            const card =
+                createLetterCard(consonant);
+
+            consonantGrid.appendChild(card);
+
+        });
+
+
+
+        /* ==================================================
+           DISPLAY VOWELS
+        ================================================== */
+
+        const vowelGrid =
+            document.getElementById(
+                "vowelGrid"
+            );
+
+
+        vowels.forEach(function(vowel) {
+
+            const card =
+                createLetterCard(vowel);
+
+            vowelGrid.appendChild(card);
+
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>
